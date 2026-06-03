@@ -1,68 +1,93 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/fonts/Georgia/stylesheet.css" />
-    <link rel="stylesheet" href="./assets/fonts/Arial/stylesheet.css" />
-    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon"    />
-    <link rel="stylesheet" href="./block/btn.css" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Shelter</title>
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./assets/fonts/Georgia/stylesheet.css" />
+        <link rel="stylesheet" href="./assets/fonts/Arial/stylesheet.css" />
+        <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="./block/btn.css" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Shelter</title>
+    </head>
 
-<body class="page">
-    <div class="wrapper">
-        <header class="header">
-            <div class="container">
-                <!-- Шапка -->
-                <div class="header__inner">
-                    <a href="index.html" class="header__logo">
-                        <p class="logo__title">Cozy House</p>
-                        <p class="logo__subtitle">Shelter for pets in Boston</p>
-                    </a>
+    <body class="page">
+        <div class="wrapper">
+            <header class="header">
+                <div class="container">
+                    <!-- Шапка -->
+                    <div class="header__inner">
+                        <a href="index.html" class="header__logo">
+                            <p class="logo__title">Cozy House</p>
+                            <p class="logo__subtitle">Shelter for pets in Boston</p>
+                        </a>
 
-                    <nav class="header__nav" id="main-menu">
-                        <ul class="header-nav__list">
-                            <li class="header-nav__item">
-                                <span class="header-nav__link header-nav__link--active">About the shelter</span>
-                            </li>
-                            <li class="header-nav__item">
-                                <a href="pets.html" class="header-nav__link">Our pets</a>
-                            </li>
-                            <li class="header-nav__item">
-                                <a href="#help" class="header-nav__link">Help the shelter</a>
-                            </li>
-                            <li class="header-nav__item">
-                                <a href="#contacts" class="header-nav__link">Contacts</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+                        <nav class="header__nav" id="main-menu">
+                            <ul class="header-nav__list">
+                                <li class="header-nav__item">
+                                    <span class="header-nav__link header-nav__link--active">About the shelter</span>
+                                </li>
+                                <li class="header-nav__item">
+                                    <a href="pets.html" class="header-nav__link">Our pets</a>
+                                </li>
+                                <li class="header-nav__item">
+                                    <a href="#help" class="header-nav__link">Help the shelter</a>
+                                </li>
+                                <li class="header-nav__item">
+                                    <a href="#contacts" class="header-nav__link">Contacts</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
 
-                <!-- Секция Not Only (в том же контейнере) -->
-                <section class="not-only">
-                    <div class="not-only__inner">
-                        <div class="not-only__info">
-                            <h1 class="not-only__title">Not only people need a house</h1>
-                            <p class="not-only__subtitle">
-                                We offer to give a chance to a little and nice puppy with an extremely wide
-                                and open heart. He or she will love you more than anybody else in the world,
-                                you will see!
-                            </p>
-                            <div class="not-only__button">
-                                <a href="#friends" class="btn btn--primary" title="Make a friend">Make a friend</a>
+                    <!-- Section Not-Only -->
+                    <section class="not-only">
+                        <div class="not-only__inner">
+                            <div class="not-only__info">
+                                <h1 class="not-only__title">Not only people need a house</h1>
+                                <p class="not-only__subtitle">
+                                    We offer to give a chance to a little and nice puppy with an extremely wide and open
+                                    heart. He or she will love you more than anybody else in the world, you will see!
+                                </p>
+                                <div class="not-only__button">
+                                    <a href="#friends" class="btn btn--primary" title="Make a friend">Make a friend</a>
+                                </div>
+                            </div>
+                            <div class="not-only__image">
+                                <img src="./assets/images/start-screen-puppy.png" alt="Dog" />
                             </div>
                         </div>
-                        <div class="not-only__image">
-                            <img src="./assets/images/start-screen-puppy.png" alt="Dog" />
+                    </section>
+                </div>
+            </header>
+
+            <main>
+                <!-- Section About -->
+                <section class="about">
+                    <div class="container">
+                        <div class="about__inner inner">
+                            <div class="about__image">
+                                <img src="./assets/images/about-pets.png" alt="about pets" />
+                            </div>
+                            <div class="about__info">
+                                <h2 class="about__title title">About the shelter “Cozy House”</h2>
+                                <p class="about__text">
+                                    Currently we have 121 dogs and 342 cats on our hands and statistics show that only
+                                    20% of them will find a family. The others will continue to live with us and will be
+                                    waiting for a lucky chance to become dearly loved.
+                                </p>
+                                <p class="about__text">
+                                    We feed our wards with the best food and make sure that they do not get sick, feel
+                                    comfortable (including psychologically) and well. We are supported by 87 volunteers
+                                    and 28 employees of various skill levels. About 12% of the animals are taken by the
+                                    shelter staff. Taking care of the animals, they become attached to the pets and
+                                    would hardly ever leave them alone.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </section>
-            </div>
-        </header>
-
-        <main></main>
-    </div>
-</body>
+            </main>
+        </div>
+    </body>
 </html>

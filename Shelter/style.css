@@ -217,3 +217,46 @@ body {
 .not-only__image {
      max-width: 698px;
 }
+
+/* Section About */
+.about {
+}
+
+
+.container {
+}
+
+.about img {
+    width: 100%;
+}
+
+.about__inner {
+    display: flex;
+    column-gap: 120px;
+    justify-content: center;
+}
+.inner {
+    padding: 80px 0 100px;
+}
+.about__image {
+    flex: 0 1 300px;
+    max-width: 300px;
+}
+.about__info {
+    padding-top: 14px;
+}
+.about__title {
+    max-width: 370px;
+    margin-bottom: 25px;
+}
+.title {
+}
+.about__text {
+    line-height: 160%;
+    color: var(--color-gray);
+    max-width: 430px;
+}
+
+.about__text:not(:last-child) {
+    margin-bottom: 25px;
+}
