@@ -42,3 +42,9 @@
     gap: 40px;
     flex-wrap: wrap;
 }
+
+.pets__pagination-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
