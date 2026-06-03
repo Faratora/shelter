@@ -140,7 +140,7 @@ body {
     font-weight: 400;
     font-size: 15px;
     line-height: 160%;
-    color: var(--color-light);
+    color: var(--color-gray-light);
     transition: all 0.3s ease 0s;
 }
 
@@ -150,7 +150,7 @@ body {
 
 .header-nav__link--active {
     border-bottom: 3px solid var(--color-primary);
-    color: var(--color-gray);
+    color: var(--color-white);
 }
 
 .inner {
@@ -387,6 +387,10 @@ body {
     letter-spacing: 0.06em;
     background: var(--color-primary);
 }
+.in-addition__card-number:hover {
+    cursor: pointer;
+    background-color: var(--color-primary-light);
+}
 
 .in-addition__card-number::before {
     content: '';
@@ -493,7 +497,7 @@ body {
 }
 
 .footer__contact-link--address::before {
-    background: url(./assets/images/icon-marker.png) 0 0 no-repeat;
+    background: url(./assets/images/svg/icon-marker.svg) 0 0 no-repeat;
     top: 3px;
     width: 22px;
     height: 32px;

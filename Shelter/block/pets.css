@@ -1,0 +1,44 @@
+/* Header */
+.pets-page .header {
+    background: #fff;
+    color: var(--color-gray-secondary);
+}
+
+.pets-page .header__inner {
+    margin-bottom: 30px;
+}
+.pets-page .logo__title {
+    color: var(--color-gray-secondary);
+}
+
+.pets-page .logo__subtitle {
+    color: var(--color-dark);
+}
+
+
+.pets-page .header-nav__link {
+    color: #545454
+}
+
+.pets-page .header-nav__link:hover {
+    color: var(--color-primary);
+}
+
+.pets-page .header-nav__link--active {
+    cursor: default;
+    pointer-events: none;
+}
+
+/* section Our Friend */
+
+.pets-page .slider-item {
+    flex-direction: column;
+    gap: 30px;
+}
+
+.slider-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
