@@ -337,6 +337,15 @@ border-radius: 9px 9px 0 0;
     text-align: center;
     margin-bottom: 30px;
 }
+.slider-item__content:hover .card-info {
+    background-color: var(--color-white); /* меняем фон нижней части */
+}
+
+.slider-item__content:hover .btn--secondary {
+    background-color: var(--color-primary); /* меняем фон кнопки */
+}
+
+
 .btn--secondary {
 }
 .btn--circle-next {

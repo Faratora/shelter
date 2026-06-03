@@ -19,6 +19,10 @@
     background-color: var(--color-primary);
 }
 
+.btn--primary:hover {
+    background-color: var(--color-primary-light);
+}
+
 .btn--secondary {
     background: transparent;
     border: 2px solid var(--color-primary);
