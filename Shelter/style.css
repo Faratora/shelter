@@ -395,9 +395,74 @@ border-radius: 9px 9px 0 0;
     color: var(--color-gray-secondary);
 }
 
+/* Section In addition */
 
+.section--color {
+    
+}
+.container {
+}
+.in-addition {
+    display: flex;
+    column-gap: 30px;
+    padding-right: 142px;
+    padding-left: 142px;
+}
+.inner {
+}
+.in-addition__image {
+    flex: 0 0 505px;
+    margin-top: 11px;
+    max-width: 505px;
+}
+.in-addition__img {
+}
+.in-addition__content {
+}
+.in-addition__title {
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+.title {
+}
+.in-addition__subtitle {
+    font-family: var(--font-family);
+    font-weight: 400;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+    color: var(--color-gray-secondary);
+    margin-bottom: 20px;
+}
+.in-addition__card-number {
+    position: relative;
+    max-width: 349px;
+    margin-bottom: 20px;
+    padding: 10px 14px 10px 60px;
+    border-radius: 9px;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 115%;
+    letter-spacing: 0.06em;
+    background: var(--color-primary);
+    
+}
 
-
-
-
+.in-addition__card-number::before {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 23px;
+    background: url(./assets/images/svg/credit-card.svg) 0 0 no-repeat;
+    left: 15px;
+    top: 10px;
+}
+.in-addition__info {
+     max-width: 380px;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: var(--color-gray-muted);
+}
 
