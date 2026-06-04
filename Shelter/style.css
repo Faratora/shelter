@@ -280,11 +280,12 @@ body {
     border-radius: 0 0 24px 24px;
     transition: background-color 0.3s ease;
     padding-top: 30px;
+    background-color: var(--color-light);
 }
 
-.card-info:hover {
+/* .card-info:hover {
     background-color: var(--color-white);
-}
+} */
 
 .pets-card__name {
     font-family: var(--font-family);
@@ -296,11 +297,16 @@ body {
     text-align: center;
     margin-bottom: 30px;
 }
-.pet-card__content:hover .card-info {
+
+.slider-item__content:hover {
+    background-color: var(--color-white);
+}
+
+.slider-item__content:hover .card-info {
     background-color: var(--color-white); /* меняем фон нижней части */
 }
 
-.pet-card__content:hover .btn--secondary {
+.slider-item__content:hover .btn--secondary {
     background-color: var(--color-primary); /* меняем фон кнопки */
 }
 
