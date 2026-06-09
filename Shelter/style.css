@@ -62,7 +62,7 @@ ul {
 img,
 svg {
     vertical-align: top;
-    max-width: 100%;
+    width: 100%;
     height: auto;
 }
 
@@ -84,7 +84,7 @@ body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgb(0, 255, 76);
+    /* border: 1px solid rgb(0, 255, 76); */
 }
 
 /* Header */
@@ -96,7 +96,7 @@ body {
 
 .container {
     margin: 0 auto;
-    max-width: 1280px;
+    width: 1280px;
     padding: 0 40px;
 }
 /* Header  */
@@ -392,6 +392,7 @@ body {
     line-height: 115%;
     letter-spacing: 0.06em;
     background: var(--color-primary);
+    color: var(--color-gray-secondary)
 }
 .in-addition__card-number:hover {
     cursor: pointer;
