@@ -1,0 +1,74 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family);
+    font-size: 17px;
+    line-height: 130%;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    padding: 15px 45px;
+    letter-spacing: 0.06em;
+    color: var(--color-dark);
+}
+
+.btn--primary {
+    background-color: var(--color-primary);
+}
+
+.btn--primary:hover {
+    background-color: var(--color-primary-light);
+}
+
+.btn--secondary {
+    background: transparent;
+    border: 2px solid var(--color-primary);
+}
+
+.btn--secondary:hover {
+    background-color: var(--color-primary);
+}
+
+/* Круглые кнопки */
+.btn--circle {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid var(--color-primary);
+}
+
+.btn--circle:hover:not(:disabled) {
+    background-color: var(--color-primary);
+}
+
+.btn--circle:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn--inactive {
+    cursor: auto;
+    background-color: inherit;
+    border: 2px solid #CDCDCD;
+    color: #CDCDCD;
+    pointer-events: none;
+}
+
+.btn--circle-active {
+    background-color: inherit;
+    cursor: pointer;
+}
+
+.btn--circle-active:hover {
+    background-color: #F1CDB3;
+}
+
+.btn--circle-num {
+    cursor: auto;
+    background-color: #F1CDB3;
+}
