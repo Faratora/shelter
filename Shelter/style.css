@@ -151,6 +151,7 @@ body {
 .header-nav__link--active {
     border-bottom: 3px solid var(--color-primary);
     color: var(--color-white);
+    padding-bottom: 3px;
 }
 
 .inner {
