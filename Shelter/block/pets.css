@@ -17,7 +17,7 @@
 
 
 .pets-page .header-nav__link {
-    color: #545454
+    color:var(--color-gray-secondary);
 }
 
 .pets-page .header-nav__link:hover {
@@ -27,6 +27,7 @@
 .pets-page .header-nav__link--active {
     cursor: default;
     pointer-events: none;
+    color: var(--color-gray-secondary);
 }
 
 /* section Our Friend */
