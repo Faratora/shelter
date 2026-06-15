@@ -21,7 +21,7 @@
 }
 
 .pets-page .header-nav__link:hover {
-    color: var(--color-primary);
+    color: var(--color-dark);
 }
 
 .pets-page .header-nav__link--active {
@@ -43,7 +43,10 @@
     flex-wrap: wrap;
 }
 
+.pets-page .slider-item__content:hover {
+    box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04);
 
+}
 
 
 .pets__pagination-wrap {
