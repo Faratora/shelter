@@ -199,6 +199,7 @@ body {
 
 .not-only__info {
     padding-top: 163px;
+    
 }
 .not-only__title {
     font-family: var(--font-family);
@@ -208,6 +209,7 @@ body {
     color: var(--color-white);
     max-width: 310px;
     margin-bottom: 40px;
+    
 }
 .not-only__subtitle {
     line-height: 160%;
@@ -335,6 +337,8 @@ body {
 
 .slider-item__content:hover {
     background-color: var(--color-white);
+    box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04);
+    cursor: pointer;
 }
 
 .slider-item__content:hover .card-info {

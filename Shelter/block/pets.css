@@ -21,11 +21,11 @@
 }
 
 .pets-page .header-nav__link {
-    color: #545454;
+    color: var(--color-gray-secondary);
 }
 
 .pets-page .header-nav__link:hover {
-    color: var(--color-primary);
+    color: var(--color-dark);
 }
 
 .pets-page .header-nav__link--active {
