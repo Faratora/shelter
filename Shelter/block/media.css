@@ -42,7 +42,6 @@
 }
 
 @media (max-width: 1133px) {
-    /* Скрыть 3 слайдер только на index.html */
     .page .slider-item .slider-item__content:nth-child(3) {
         display: none;
     }
@@ -136,22 +135,21 @@
         max-width: 569px;
         margin-top: 100px;
         margin-left: 139px;
-        /* margin: 25px 0 0 auto; */
+       
     }
 
     /* Section About */
     .about__title {
         font-size: 35px;
         max-width: 370px;
-        /* margin: 0 auto 25px auto; */
+        
     }
 
     .about__text {
         max-width: 430px;
         font-size: 15px;
         text-align: left;
-        /* padding-left: 15px;
-        padding-right: 15px; */
+        
     }
 
     .about__text:not(:last-child) {
@@ -161,8 +159,7 @@
         margin-top: 80px;
         max-width: 300px;
     }
-    /* Section Our Friends */
-
+    
     /* section Help */
     .help__title {
         margin-bottom: 60px;
@@ -311,10 +308,7 @@
    
 }
 
-
-
 @media (max-width: 676px) {
-
      .our-friends__slider {
         display: flex;
         flex-direction: column;
@@ -324,7 +318,6 @@
         margin-bottom: 42px;
     }
 
-    /* Карточка */
     .slider-item {
         width: 100%;
         display: flex;
@@ -341,10 +334,7 @@
         font-size: 25px;
     }
 
-    /*  */
-
-   
-    /* Абсолютное позиционирование кнопок внизу */
+    /* Позиционирование кнопок внизу */
     .btn--circle-prev {
         position: absolute;
         bottom: -68px;
@@ -441,7 +431,6 @@
 
     .footer__link--address {
         padding-left: 41px;
-        /* text-align: left; */
         display: inline-block;
     }
 }
@@ -551,16 +540,8 @@ color: var(--color-dark-l);
     .in-addition__image {
         padding-top: 20px;
     }
-    /* .help__blocks {
-            display: grid;
-            gap: 30px;
-            padding: 4px 0;
-        } */
-
+    
     .help__title {
-        /* font-size: 22px;
-            max-width: 100%;
-            margin-top: 30px; */
         margin-bottom: 40px;
     }
 
@@ -577,6 +558,54 @@ color: var(--color-dark-l);
         width: 50px;
         height: 50px;
     }
+
+/* Footer */
+    .footer__grid {
+        row-gap: 0px;
+        
+    }
+
+    .footer__title {
+        margin: 0 auto 40px auto;      
+    }   
+
+    .footer__contact-item {
+        max-width: 302px;
+    }    
+
+    .footer__link--phone {
+        padding-left: 20px;
+        padding-top: 0px;
+    }
+    
+    .footer__link--address-first {
+        margin-bottom: 10px;
+    }
+
+    .footer__link--address-second {
+        margin-bottom: 43px;
+    }
+
+    .footer__link--address::before {
+        top: 10px;
+    }
+
+    .footer__link--address-second::before {
+        top: -5px;
+    }
+
+    .footer__image {
+        text-align: center;
+        margin-top: -30px;
+        justify-content: center;
+    }
+
+    .footer__img {
+        max-width: 260px;
+        margin: 0 auto;
+    }
+
+
 }
 
 @media (max-width: 320px) {
@@ -642,65 +671,5 @@ color: var(--color-dark-l);
         max-width: 260px;
     }
 
- /*  */
-
-    /* Footer */
-    .footer__grid {
-        row-gap: 0px;
-        /* padding: 30px 0 0; */
-    }
-
-    .footer__title {
-        margin: 0 auto 40px auto;      
-    }
-
-    .footer__contacts {
-        /* align-items: center; */
-    }
-
-    .footer__contact-item {
-        max-width: 302px;
-    }
-
-    .footer__link {
-        /* font-size: 20px; */
-    }
-
-    .footer__link--email {
-        /* padding-left: 15px; */
-    }
-
-    .footer__link--phone {
-        padding-left: 20px;
-        padding-top: 0px;
-    }
-    .footer__link--address {
-        /* padding-left: 41px; */
-    }
-    .footer__link--address-first {
-        margin-bottom: 10px;
-    }
-
-    .footer__link--address-second {
-        margin-bottom: 43px;
-    }
-
-    .footer__link--address::before {
-        top: 10px;
-    }
-
-    .footer__link--address-second::before {
-        top: -5px;
-    }
-
-    .footer__image {
-        text-align: center;
-        margin-top: -30px;
-        justify-content: center;
-    }
-
-    .footer__img {
-        max-width: 260px;
-        margin: 0 auto;
-    }
+    
 }
