@@ -39,12 +39,18 @@
     background-color: var(--color-gray-lighter);
 }
 
+.pets-page .our-friends__slider {
+    overflow: hidden;
+}
+
 .pets-page .slider-item {
     display: flex;
     justify-content: center;
     row-gap: 30px;
     column-gap: 40px;
     flex-wrap: wrap;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .pets__pagination-wrap {
@@ -66,15 +72,13 @@
         margin-bottom: 36px;
     }
 
-    /* Поднять кнопки пагинации выше */
     .pets__pagination-wrap {
         padding-bottom: 70px;
     }
 
-    /* Скрыть 7 и 8 слайдер на pets.html */
     .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(7),
     .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(8) {
-        display: none !important;
+        display: none;
     }
 
   
@@ -82,8 +86,6 @@
         margin-top:0;
         padding-top: 35px;
     }
-
-
 }
 
 @media (max-width: 320px) {
@@ -91,31 +93,30 @@
     .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(4),
     .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(5),
     .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(6)    {
-        display: none !important;
+        display: none;
     }
     
    
     .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(1),
     .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(2),
     .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(3) {
-        display: block !important;
+        display: block;
     }
 
     .pets__pagination-wrap {
         padding-bottom: 70px;
     }
 
-.pets__pagination-wrap {
+    .pets__pagination-wrap {
     
     gap: 10px;
     padding-bottom: 30px;
-}
+    }
 
     .pets-page .footer__grid {
         margin-top: 10px;
         padding-top: 35px;
     }
-
 
     .pets-page .inner {
         padding: 45px 0 0;
