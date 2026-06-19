@@ -4,9 +4,14 @@
     color: var(--color-gray-secondary);
 }
 
+.pets-page .inner {
+    padding: 80px 0 0;
+}
+
 .pets-page .header__inner {
     margin-bottom: 30px;
 }
+
 .pets-page .logo__title {
     color: var(--color-gray-secondary);
 }
@@ -15,40 +20,112 @@
     color: var(--color-dark);
 }
 
-
 .pets-page .header-nav__link {
-    color:var(--color-gray-secondary);
+    color: #545454;
 }
 
 .pets-page .header-nav__link:hover {
-    color: var(--color-dark);
+    color: var(--color-primary);
 }
 
 .pets-page .header-nav__link--active {
     cursor: default;
     pointer-events: none;
-    color: var(--color-gray-secondary);
+    padding-bottom: 0;
 }
 
 /* section Our Friend */
+.pets-page .section--color {
+    background-color: var(--color-gray-lighter);
+}
+
+.pets-page .our-friends__slider {
+    overflow: hidden;
+}
 
 .pets-page .slider-item {
-    flex-direction: column;
-    gap: 30px;
-}
-
-.pets-page .slider-row {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    row-gap: 30px;
+    column-gap: 40px;
     flex-wrap: wrap;
+    max-width: 100%;
+    overflow: hidden;
 }
-
-
 
 .pets__pagination-wrap {
     display: flex;
     justify-content: center;
     gap: 20px;
+    padding-bottom: 100px;
+}
+
+/* Burger */
+.pets-page .header__burger span {
+    background: #000;
+}
+
+@media (max-width: 768px) {
+    
+    .pets-page .our-friends__slider {
+        margin-top: 30px;
+        margin-bottom: 36px;
+    }
+
+    .pets__pagination-wrap {
+        padding-bottom: 70px;
+    }
+
+    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(7),
+    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(8) {
+        display: none;
+    }
+
+  
+.pets-page .footer__grid {
+        margin-top:0;
+        padding-top: 35px;
+    }
+}
+
+@media (max-width: 320px) {
+   
+    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(4),
+    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(5),
+    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(6)    {
+        display: none;
+    }
+    
+   
+    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(1),
+    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(2),
+    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(3) {
+        display: block;
+    }
+
+    .pets__pagination-wrap {
+        padding-bottom: 70px;
+    }
+
+    .pets__pagination-wrap {
+    
+    gap: 10px;
+    padding-bottom: 30px;
+    }
+
+    .pets-page .footer__grid {
+        margin-top: 10px;
+        padding-top: 35px;
+    }
+
+    .pets-page .inner {
+        padding: 45px 0 0;
+    }
+
+    .pets-page .our-friends__slider {
+        margin-top: 55px;
+        margin-bottom: 36px;
+    }
+
 }
 
