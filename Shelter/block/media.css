@@ -236,15 +236,14 @@
         padding: 0;
         align-self: center;
         z-index: 10002;
-        position: fixed;
-        top: 25px;
-        right: 10px;
+        position: relative;
+        right: 5px;
+
     }
 
 .pets-page .header__burger.active span {
     background: var(--color-primary);
 }
-
 
     .header__burger span {
         display: block;

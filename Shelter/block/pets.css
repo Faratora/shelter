@@ -104,18 +104,13 @@
     }
 
     .pets__pagination-wrap {
-        padding-bottom: 70px;
-    }
-
-    .pets__pagination-wrap {
-    
+        
     gap: 10px;
-    padding-bottom: 30px;
+    padding-bottom: 44px;
     }
 
     .pets-page .footer__grid {
-        margin-top: 10px;
-        padding-top: 35px;
+       padding-top: 33px;
     }
 
     .pets-page .inner {
