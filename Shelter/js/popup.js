@@ -56,6 +56,49 @@ document.addEventListener('DOMContentLoaded', function() {
             petsLoaded = true;
         });
 
+    function openPopup(pet) {
+        const img = popup.querySelector('.pets-popup__img');
+        const nameEl = popup.querySelector('.pets-popup__name');
+        const detailsEl = popup.querySelector('.pets-popup__details');
+        const descEl = popup.querySelector('.pets-popup__description');
+        const values = popup.querySelectorAll('.pets-popup__value');
+        
+        if (img) {
+            img.src = pet.img || './assets/images/pets-default.webp';
+            img.alt = pet.name || 'Pet';
+        }
+        
+        if (nameEl) {
+            nameEl.textContent = pet.name || 'Unknown';
+        }
+        
+        if (detailsEl) {
+            const type = pet.type ? pet.type.charAt(0).toUpperCase() + pet.type.slice(1) : '';
+            const breed = pet.breed || '';
+            detailsEl.textContent = type && breed ? `${type} - ${breed}` : type || breed || 'Unknown breed';
+        }
+        
+        if (descEl) {
+            descEl.textContent = pet.description || 'No description available.';
+        }
+        
+        if (values && values.length >= 4) {
+            values[0].textContent = pet.age || 'Not specified';
+            values[1].textContent = Array.isArray(pet.inoculations) 
+                ? pet.inoculations.join(', ') 
+                : pet.inoculations || 'Not specified';
+            values[2].textContent = Array.isArray(pet.diseases) 
+                ? pet.diseases.join(', ') 
+                : pet.diseases || 'None';
+            values[3].textContent = Array.isArray(pet.parasites) 
+                ? pet.parasites.join(', ') 
+                : pet.parasites || 'None';
+        }
+        
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        window.scrollTo(0, 0);
+    }
 
 
 });
