@@ -75,4 +75,86 @@ const generateAllCards = (pets) => {
     return result;
 };
 
+const renderPage = (page) => {
+    const start = (page - 1) * cardsPerView;
+    const end = start + cardsPerView;
+    const pageCards = allCards.slice(start, end);
+
+    sliderContainer.innerHTML = '';
+    pageCards.forEach((pet, index) => {
+        const card = document.createElement('article');
+        card.className = 'slider-item__content';
+        card.dataset.petId = pet.id;
+        card.innerHTML = `
+            <img class="slider-item__img" src="${pet.img}" alt="${pet.name}'s photo">
+            <div class="card-info">
+                <p class="pets-card__name">${pet.name}</p>
+                <a href="#" style="text-decoration: none">
+                    <div class="btn btn--secondary">
+                        <span>Learn more</span>
+                    </div>
+                </a>
+            </div>
+        `;
+        sliderContainer.appendChild(card);
+    });
+
+    updatePagination(page);
+    updateDimensions();
+};
+
+const updatePagination = (page) => {
+    paginationWrap.innerHTML = '';
+
+    const firstBtn = document.createElement('button');
+    firstBtn.className = 'btn btn--circle';
+    firstBtn.innerHTML = '&lt;&lt;';
+    if (page === 1) {
+        firstBtn.classList.add('btn--inactive');
+        firstBtn.disabled = true;
+    } else {
+        firstBtn.addEventListener('click', () => goToPage(1));
+    }
+    paginationWrap.appendChild(firstBtn);
+
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'btn btn--circle';
+    prevBtn.innerHTML = '&lt;';
+    if (page === 1) {
+        prevBtn.classList.add('btn--inactive');
+        prevBtn.disabled = true;
+    } else {
+        prevBtn.addEventListener('click', () => goToPage(page - 1));
+    }
+    paginationWrap.appendChild(prevBtn);
+
+    const currentSpan = document.createElement('span');
+    currentSpan.className = 'btn btn--circle btn--circle-num';
+    currentSpan.textContent = page;
+    paginationWrap.appendChild(currentSpan);
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'btn btn--circle';
+    nextBtn.innerHTML = '&gt;';
+    if (page === totalPages) {
+        nextBtn.classList.add('btn--inactive');
+        nextBtn.disabled = true;
+    } else {
+        nextBtn.addEventListener('click', () => goToPage(page + 1));
+    }
+    paginationWrap.appendChild(nextBtn);
+
+    const lastBtn = document.createElement('button');
+    lastBtn.className = 'btn btn--circle';
+    lastBtn.innerHTML = '&gt;&gt;';
+    if (page === totalPages) {
+        lastBtn.classList.add('btn--inactive');
+        lastBtn.disabled = true;
+    } else {
+        lastBtn.addEventListener('click', () => goToPage(totalPages));
+    }
+    paginationWrap.appendChild(lastBtn);
+};
+
+
 });
