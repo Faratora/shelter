@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+
     const popup = document.getElementById('petsPopup');
     
     if (!popup) {
@@ -28,12 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    window.petPopup = {
-        open: () => console.warn('petPopup.open not implemented yet'),
-        close: closePopup
-    };
-
- let petsData = [];
+    let petsData = [];
     let petsLoaded = false;
 
     fetch('./pets.json')
@@ -100,5 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
         window.scrollTo(0, 0);
     }
 
-
+    window.petPopup = {
+        open: openPopup,
+        close: closePopup
+    };
 });
