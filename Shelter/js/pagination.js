@@ -178,4 +178,32 @@ const animateTransition = (callback) => {
     }, 300);
 };
 
+const updateDimensions = () => {
+    const cards = sliderContainer.querySelectorAll('.slider-item__content');
+    const isMobile = window.innerWidth < 768;
+    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1280;
+
+    if (isMobile) {
+        cards.forEach(card => {
+            card.style.flex = '0 0 calc(33.333% - 14px)';
+            card.style.width = 'calc(33.333% - 14px)';
+        });
+        sliderContainer.style.gap = '20px';
+    } else if (isTablet) {
+        cards.forEach(card => {
+            card.style.flex = '0 0 calc(50% - 15px)';
+            card.style.width = 'calc(50% - 15px)';
+        });
+        sliderContainer.style.gap = '30px';
+    } else {
+        cards.forEach(card => {
+            card.style.flex = '0 0 calc(33.333% - 27px)';
+            card.style.width = 'calc(33.333% - 27px)';
+        });
+        sliderContainer.style.gap = '40px';
+    }
+};
+
+
+
 });
