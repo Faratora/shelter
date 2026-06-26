@@ -155,6 +155,27 @@ const updatePagination = (page) => {
     }
     paginationWrap.appendChild(lastBtn);
 };
+const goToPage = (page) => {
+    if (page < 1 || page > totalPages || page === currentPage) return;
+    currentPage = page;
+    animateTransition(() => renderPage(page));
+};
 
+const animateTransition = (callback) => {
+    sliderContainer.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+    sliderContainer.style.transform = 'translateX(-20px)';
+    sliderContainer.style.opacity = '0';
+
+    setTimeout(() => {
+        callback();
+        sliderContainer.style.transition = 'none';
+        sliderContainer.style.transform = 'translateX(20px)';
+        // Force reflow
+        sliderContainer.offsetHeight;
+        sliderContainer.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+        sliderContainer.style.transform = 'translateX(0)';
+        sliderContainer.style.opacity = '1';
+    }, 300);
+};
 
 });
