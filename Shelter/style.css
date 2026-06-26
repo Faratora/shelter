@@ -268,57 +268,52 @@ body {
 
 .our-friends__slider {
     display: flex;
-    height: 435px;
-    margin: 60px 0;
+    justify-content: center;
     align-items: center;
-}
-
-.our-friends__slider-wrapper {
-    width: 990px;
-    height: 435px;
-    margin: 0 53px;
-    overflow: hidden;
-}
-
-.slider {
-    display: flex;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.6s ease-in-out;
-    will-change: transform;
+    gap: 30px;
+    width: 100%;
+    margin: 60px 0 60px;
+    flex-wrap: nowrap;
 }
 
 .slider-item {
     display: flex;
+    justify-content: center;
+    align-items: stretch;
     gap: 90px;
-    flex-shrink: 0;
+    flex: 1;
+    flex-wrap: wrap;
+    max-width: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
 }
 
 .slider-item__content {
-    display: flex;
-    width: 270px;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--color-light);
-    border-radius: 9px;
-    cursor: pointer;
+    flex: 1 1 270px;
+    max-width: 270px;
+    min-width: 240px;
+    background-color: transparent;
+    border-radius: 24px;
     transition: background-color 0.3s ease;
-    flex-shrink: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-light);
+    border-radius: 24px;
+    overflow: hidden;
 }
 
 .slider-item__img {
-    width: 270px;
-    height: 270px;
     border-radius: 9px 9px 0 0;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     display: block;
+    transition: background-color 0.3s ease;
 }
 
 .card-info {
     display: flex;
-    width: 270px;
-    height: 165px;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
@@ -326,6 +321,7 @@ body {
     background-color: var(--color-light);
     transition: background-color 0.3s ease;
     flex-grow: 1;
+    text-align: center;
 }
 
 .pets-card__name {
@@ -351,15 +347,7 @@ body {
     background-color: var(--color-primary);
 }
 
-/* Slider animations - removed, using JS transition instead */
-
-.slider-prev,
-.slider-next,
-.slider-current {
-    display: flex;
-    visibility: visible;
-    opacity: 1;
-}
+/* section Help */
 .help__body {
     display: flex;
     flex-direction: column;
@@ -624,27 +612,53 @@ body {
 }
 
 
+/* Стили для слайдера с анимацией */
+
+.slider-item.move-left {
+    animation: slideLeft 1s ease-in-out;
+}
+
+.slider-item.move-right {
+    animation: slideRight 1s ease-in-out;
+}
+
+@keyframes slideLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+/* Стили для контейнеров предпросмотра */
+.slider-prev,
+.slider-next {
+    display: none;
+}
+
 /* Адаптивность */
 @media (max-width: 1279px) {
-    .slider {
-        gap: 30px;
-    }
-
-    .our-friends__slider-wrapper {
-        width: 690px;
+    .slider-item {
+        gap: 20px;
     }
 }
 
 @media (max-width: 767px) {
-    .slider {
+    .slider-item {
         gap: 15px;
-    }
-
-    .our-friends__slider-wrapper {
-        width: 300px;
-    }
-
-    .our-friends__slider {
-        height: auto;
     }
 }
