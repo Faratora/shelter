@@ -1,10 +1,16 @@
 /* ========== Popup ========== */
+/* Блокируем скролл на html, а не на body */
+html.menu-open,
+html.popup-open {
+  overflow: hidden !important;
+  /* position: fixed здесь НЕ нужен — он и вызывает прыжок */
+}
+
+/* body оставляем как есть, без position:fixed */
+body.menu-open,
 body.popup-open {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
+  /* Убираем position:fixed и margin-right отсюда */
+  overflow: hidden !important;
 }
 
 
@@ -18,7 +24,7 @@ body.popup-open {
 }
 
 .pets-popup.active {
-    display: flex;
+    display: flex !important;
 }
 
 .pets-popup__overlay {

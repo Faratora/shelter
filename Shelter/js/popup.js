@@ -10,26 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = popup.querySelector('.pets-popup__close');
     const overlay = popup.querySelector('.pets-popup__overlay');
 
-    function closePopup() {
-        popup.classList.remove('active');
-        document.body.style.overflow = '';
-        // document.body.classList.remove('popup-open');
-    }
     
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closePopup);
-    }
-    
-    if (overlay) {
-        overlay.addEventListener('click', closePopup);
-    }
-    
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && popup.classList.contains('active')) {
-            closePopup();
-        }
-    });
-
+    let scrollPosition = 0;
     let petsData = [];
 
     fetch('./pets.json')
@@ -48,8 +30,19 @@ document.addEventListener('DOMContentLoaded', function() {
             ];
         });
 
+        
+
+
     function openPopup(pet) {
-        const img = popup.querySelector('.pets-popup__img');
+
+        scrollPosition = window.scrollY;
+
+        console.log('>>> openPopup вызван, pet:', pet);
+
+
+        try {
+
+         const img = popup.querySelector('.pets-popup__img');
         const nameEl = popup.querySelector('.pets-popup__name');
         const detailsEl = popup.querySelector('.pets-popup__details');
         const descEl = popup.querySelector('.pets-popup__description');
@@ -85,17 +78,56 @@ document.addEventListener('DOMContentLoaded', function() {
             values[3].textContent = Array.isArray(pet.parasites) 
                 ? pet.parasites.join(', ') 
                 : pet.parasites || 'None';
-        }
+        }else {
+            console.warn(`Не хватает .pets-popup__value элементов: найдено ${values?.length || 0}`);
+          }
         
         popup.classList.add('active');
         
-        document.body.style.overflow = '';// БЛОКИРУЕМ СКРОЛЛ
-        // document.body.classList.add('popup-open');
+        // document.body.style.overflow = '';// БЛОКИРУЕМ СКРОЛЛ
+        document.body.classList.add('popup-open');
+        document.documentElement.classList.add('popup-open');
+
+        console.log('>>> Классы добавлены: popup.active =', popup.classList.contains('active'));
+    console.log('>>> Классы добавлены: body.popup-open =', document.body.classList.contains('popup-open'));
+
+  } catch (err) {
+    console.error('Ошибка в openPopup:', err);
+  }
+
     }
 
     window.petPopup = {
         open: openPopup,
         close: closePopup
     };
-   
+
+    console.log('popup active:', popup.classList.contains('active'));
+    console.log('body popup-open:', document.body.classList.contains('popup-open'));
+    console.log('body style.overflow:', document.body.style.overflow);
+
+
+    function closePopup() {
+        popup.classList.remove('active');
+        // document.body.style.overflow = '';
+        document.body.classList.remove('popup-open');
+        document.documentElement.classList.remove('popup-open');
+
+        window.scrollTo(0, scrollPosition);
+    }
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closePopup);
+    }
+    
+    if (overlay) {
+        overlay.addEventListener('click', closePopup);
+    }
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && popup.classList.contains('active')) {
+            closePopup();
+        }
+    });
+  
 });

@@ -8,20 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
         burger.classList.remove('active');
         nav.classList.remove('active');
         document.body.classList.remove('menu-open');
-        document.body.style.position = '';
-        document.body.style.top = '';
+        document.documentElement.classList.remove('menu-open');
         if (overlay) overlay.classList.remove('active');
     }
 
     function openMenu() {
-        const scrollTop = window.scrollY;
         burger.classList.add('active');
         nav.classList.add('active');
         document.body.classList.add('menu-open');
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${scrollTop}px`;
-        document.body.style.left = '0';
-        document.body.style.width = '100%';
+        document.documentElement.classList.add('menu-open');
         if (overlay) overlay.classList.add('active');
     }
 
