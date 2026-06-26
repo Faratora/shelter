@@ -203,7 +203,42 @@ const updateDimensions = () => {
         sliderContainer.style.gap = '40px';
     }
 };
+const init = async () => {
+    try {
+        const response = await fetch('./pets.json');
+        allPets = await response.json();
+    } catch (e) {
+        allPets = [
+            { id: 0, name: 'Jennifer', img: './assets/images/pets-jennifer.webp' },
+            { id: 1, name: 'Sophia', img: './assets/images/pets-sophie.webp' },
+            { id: 2, name: 'Woody', img: './assets/images/pets-woody.webp' },
+            { id: 3, name: 'Scarlet', img: './assets/images/pets-scarlet.webp' },
+            { id: 4, name: 'Katrine', img: './assets/images/pets-katrine.webp' },
+            { id: 5, name: 'Timmy', img: './assets/images/pets-timmy.webp' },
+            { id: 6, name: 'Freddie', img: './assets/images/pets-freddie.webp' },
+            { id: 7, name: 'Charly', img: './assets/images/pets-charly.webp' }
+        ];
+    }
 
+    cardsPerView = getCardsPerView();
+    totalPages = getTotalPages();
+    allCards = generateAllCards(allPets);
+    renderPage(currentPage);
+
+    window.addEventListener('resize', () => {
+        const newCardsPerView = getCardsPerView();
+        if (newCardsPerView !== cardsPerView) {
+            cardsPerView = newCardsPerView;
+            totalPages = getTotalPages();
+            currentPage = 1;
+            renderPage(currentPage);
+        } else {
+            updateDimensions();
+        }
+    });
+};
+
+init();
 
 
 });
