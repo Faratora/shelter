@@ -134,7 +134,65 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 }
+slide(direction) {
+    if (this.isAnimating) return;
+    this.isAnimating = true;
 
+    this.prevButton.style.pointerEvents = 'none';
+    this.nextButton.style.pointerEvents = 'none';
+
+    if (direction === 'next') {
+        this.sliderPrev.innerHTML = this.sliderCurrent.innerHTML;
+        this.sliderPrev.className = 'slider-item';
+        this.sliderCurrent.innerHTML = this.sliderNext.innerHTML;
+        this.sliderCurrent.className = 'slider-item';
+
+        this.currentIndex = (this.currentIndex + this.cardsPerView) % this.allPets.length;
+
+        this.nextCardsArr = [];
+        for (let i = 0; i < this.cardsPerView; i++) {
+            this.nextCardsArr.push(this.getWrappedIndex(this.currentIndex + this.cardsPerView + i));
+        }
+        this.renderSlider(this.sliderNext, this.nextCardsArr);
+
+        this.slider.style.transition = 'transform 0.6s ease-in-out';
+        this.slider.style.transform = `translateX(-${this.itemWidth * 2}px)`;
+
+        setTimeout(() => {
+            this.slider.style.transition = 'none';
+            this.slider.appendChild(this.sliderPrev);
+            this.slider.style.transform = `translateX(-${this.itemWidth}px)`;
+            this.isAnimating = false;
+            this.prevButton.style.pointerEvents = 'auto';
+            this.nextButton.style.pointerEvents = 'auto';
+        }, 600);
+    } else {
+        this.sliderNext.innerHTML = this.sliderCurrent.innerHTML;
+        this.sliderNext.className = 'slider-item';
+        this.sliderCurrent.innerHTML = this.sliderPrev.innerHTML;
+        this.sliderCurrent.className = 'slider-item';
+
+        this.currentIndex = this.getWrappedIndex(this.currentIndex - this.cardsPerView);
+
+        this.prevCardsArr = [];
+        for (let i = 0; i < this.cardsPerView; i++) {
+            this.prevCardsArr.push(this.getWrappedIndex(this.currentIndex - this.cardsPerView + i));
+        }
+        this.renderSlider(this.sliderPrev, this.prevCardsArr);
+
+        this.slider.style.transition = 'transform 0.6s ease-in-out';
+        this.slider.style.transform = `translateX(0)`;
+
+        setTimeout(() => {
+            this.slider.style.transition = 'none';
+            this.slider.insertBefore(this.sliderNext, this.slider.firstChild);
+            this.slider.style.transform = `translateX(-${this.itemWidth}px)`;
+            this.isAnimating = false;
+            this.prevButton.style.pointerEvents = 'auto';
+            this.nextButton.style.pointerEvents = 'auto';
+        }, 600);
+    }
+}
 
 }
 
