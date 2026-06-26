@@ -33,8 +33,9 @@ document.addEventListener('DOMContentLoaded', function () {
             this.generateCardArrays();
             this.renderAllSliders();
 
-            this.slider.style.transition = 'none';
             this.slider.style.transform = `translateX(-${this.itemWidth}px)`;
+            // Force reflow — браузер должен отрисовать начальное состояние
+            this.slider.offsetHeight;
 
             this.setupEventListeners();
         }
@@ -115,86 +116,94 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!this.prevButton || !this.nextButton) return;
             this.prevButton.addEventListener('click', () => this.slide('prev'));
             this.nextButton.addEventListener('click', () => this.slide('next'));
-        
 
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            const newCardsPerView = this.getCardsPerView();
-            if (newCardsPerView !== this.cardsPerView) {
-                this.cardsPerView = newCardsPerView;
-                this.itemWidth = this.sliderCurrent.offsetWidth;
-                this.generateCardArrays();
-                this.renderAllSliders();
-                this.slider.style.transition = 'none';
-                this.slider.style.transform = `translateX(-${this.itemWidth}px)`;
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    const newCardsPerView = this.getCardsPerView();
+                    if (newCardsPerView !== this.cardsPerView) {
+                        this.cardsPerView = newCardsPerView;
+                        this.itemWidth = this.sliderCurrent.offsetWidth;
+                        this.generateCardArrays();
+                        this.renderAllSliders();
+                        this.slider.style.transform = `translateX(-${this.itemWidth}px)`;
+                        this.slider.offsetHeight; // Force reflow
+                    }
+                }, 200);
+            });
+        }
+
+        slide(direction) {
+            if (this.isAnimating) return;
+            this.isAnimating = true;
+
+            this.prevButton.style.pointerEvents = 'none';
+            this.nextButton.style.pointerEvents = 'none';
+
+            if (direction === 'next') {
+                this.sliderPrev.innerHTML = this.sliderCurrent.innerHTML;
+                this.sliderPrev.className = 'slider-item';
+                this.sliderCurrent.innerHTML = this.sliderNext.innerHTML;
+                this.sliderCurrent.className = 'slider-item';
+
+                this.currentIndex = (this.currentIndex + this.cardsPerView) % this.allPets.length;
+
+                this.nextCardsArr = [];
+                for (let i = 0; i < this.cardsPerView; i++) {
+                    this.nextCardsArr.push(this.getWrappedIndex(this.currentIndex + this.cardsPerView + i));
+                }
+                this.renderSlider(this.sliderNext, this.nextCardsArr);
+
+                // Force reflow — чтобы браузер отрисовал начальное состояние
+                this.slider.offsetHeight;
+
+                this.slider.style.transform = `translateX(-${this.itemWidth * 2}px)`;
+
+                setTimeout(() => {
+                    this.slider.style.transition = 'none';
+                    this.slider.appendChild(this.sliderPrev);
+                    this.slider.style.transform = `translateX(-${this.itemWidth}px)`;
+                    // Force reflow
+                    this.slider.offsetHeight;
+                    this.slider.style.transition = '';
+                    this.isAnimating = false;
+                    this.prevButton.style.pointerEvents = 'auto';
+                    this.nextButton.style.pointerEvents = 'auto';
+                }, 600);
+            } else {
+                this.sliderNext.innerHTML = this.sliderCurrent.innerHTML;
+                this.sliderNext.className = 'slider-item';
+                this.sliderCurrent.innerHTML = this.sliderPrev.innerHTML;
+                this.sliderCurrent.className = 'slider-item';
+
+                this.currentIndex = this.getWrappedIndex(this.currentIndex - this.cardsPerView);
+
+                this.prevCardsArr = [];
+                for (let i = 0; i < this.cardsPerView; i++) {
+                    this.prevCardsArr.push(this.getWrappedIndex(this.currentIndex - this.cardsPerView + i));
+                }
+                this.renderSlider(this.sliderPrev, this.prevCardsArr);
+
+                // Force reflow — чтобы браузер отрисовал начальное состояние
+                this.slider.offsetHeight;
+
+                this.slider.style.transform = `translateX(0)`;
+
+                setTimeout(() => {
+                    this.slider.style.transition = 'none';
+                    this.slider.insertBefore(this.sliderNext, this.slider.firstChild);
+                    this.slider.style.transform = `translateX(-${this.itemWidth}px)`;
+                    // Force reflow
+                    this.slider.offsetHeight;
+                    this.slider.style.transition = '';
+                    this.isAnimating = false;
+                    this.prevButton.style.pointerEvents = 'auto';
+                    this.nextButton.style.pointerEvents = 'auto';
+                }, 600);
             }
-        }, 200);
-    });
-
-}
-slide(direction) {
-    if (this.isAnimating) return;
-    this.isAnimating = true;
-
-    this.prevButton.style.pointerEvents = 'none';
-    this.nextButton.style.pointerEvents = 'none';
-
-    if (direction === 'next') {
-        this.sliderPrev.innerHTML = this.sliderCurrent.innerHTML;
-        this.sliderPrev.className = 'slider-item';
-        this.sliderCurrent.innerHTML = this.sliderNext.innerHTML;
-        this.sliderCurrent.className = 'slider-item';
-
-        this.currentIndex = (this.currentIndex + this.cardsPerView) % this.allPets.length;
-
-        this.nextCardsArr = [];
-        for (let i = 0; i < this.cardsPerView; i++) {
-            this.nextCardsArr.push(this.getWrappedIndex(this.currentIndex + this.cardsPerView + i));
         }
-        this.renderSlider(this.sliderNext, this.nextCardsArr);
-
-        this.slider.style.transition = 'transform 0.6s ease-in-out';
-        this.slider.style.transform = `translateX(-${this.itemWidth * 2}px)`;
-
-        setTimeout(() => {
-            this.slider.style.transition = 'none';
-            this.slider.appendChild(this.sliderPrev);
-            this.slider.style.transform = `translateX(-${this.itemWidth}px)`;
-            this.isAnimating = false;
-            this.prevButton.style.pointerEvents = 'auto';
-            this.nextButton.style.pointerEvents = 'auto';
-        }, 600);
-    } else {
-        this.sliderNext.innerHTML = this.sliderCurrent.innerHTML;
-        this.sliderNext.className = 'slider-item';
-        this.sliderCurrent.innerHTML = this.sliderPrev.innerHTML;
-        this.sliderCurrent.className = 'slider-item';
-
-        this.currentIndex = this.getWrappedIndex(this.currentIndex - this.cardsPerView);
-
-        this.prevCardsArr = [];
-        for (let i = 0; i < this.cardsPerView; i++) {
-            this.prevCardsArr.push(this.getWrappedIndex(this.currentIndex - this.cardsPerView + i));
-        }
-        this.renderSlider(this.sliderPrev, this.prevCardsArr);
-
-        this.slider.style.transition = 'transform 0.6s ease-in-out';
-        this.slider.style.transform = `translateX(0)`;
-
-        setTimeout(() => {
-            this.slider.style.transition = 'none';
-            this.slider.insertBefore(this.sliderNext, this.slider.firstChild);
-            this.slider.style.transform = `translateX(-${this.itemWidth}px)`;
-            this.isAnimating = false;
-            this.prevButton.style.pointerEvents = 'auto';
-            this.nextButton.style.pointerEvents = 'auto';
-        }, 600);
     }
-}
-
-}
 
     window.petSlider = new PetSlider();
 });
