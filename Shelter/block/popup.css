@@ -1,4 +1,13 @@
 /* ========== Popup ========== */
+body.popup-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+
 .pets-popup {
     position: fixed;
     inset: 0;

@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function closePopup() {
         popup.classList.remove('active');
         document.body.style.overflow = '';
+        // document.body.classList.remove('popup-open');
     }
     
     if (closeBtn) {
@@ -30,15 +31,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     let petsData = [];
-    let petsLoaded = false;
 
-    async function loadPetsData() {
-        try {
-            const response = await fetch('./pets.json');
-            if (!response.ok) throw new Error('Network response was not ok');
-            petsData = await response.json();
-        } catch (error) {
-            console.error('Error loading pets data:', error);
+    fetch('./pets.json')
+        .then(r => r.json())
+        .then(data => petsData = data)
+        .catch(() => {
             petsData = [
                 { id: 0, name: 'Jennifer', img: './assets/images/pets-jennifer.webp' },
                 { id: 1, name: 'Sophia', img: './assets/images/pets-sophie.webp' },
@@ -49,11 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { id: 6, name: 'Freddie', img: './assets/images/pets-freddie.webp' },
                 { id: 7, name: 'Charly', img: './assets/images/pets-charly.webp' }
             ];
-        }
-        petsLoaded = true;
-    }
-
-    loadPetsData();
+        });
 
     function openPopup(pet) {
         const img = popup.querySelector('.pets-popup__img');
@@ -95,24 +88,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         popup.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        window.scrollTo(0, 0);
+        
+        document.body.style.overflow = '';// БЛОКИРУЕМ СКРОЛЛ
+        // document.body.classList.add('popup-open');
     }
 
     window.petPopup = {
         open: openPopup,
         close: closePopup
     };
-
-    document.addEventListener('click', async function(e) {
-        const learnMoreBtn = e.target.closest('.btn--secondary');
-        if (!learnMoreBtn || !petsLoaded) return;
-
-        const petId = parseInt(learnMoreBtn.getAttribute('data-pet-id'));
-        const pet = petsData.find(p => p.id === petId);
-        
-        if (pet) {
-            openPopup(pet);
-        }
-    });
+   
 });
