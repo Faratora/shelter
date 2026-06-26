@@ -115,8 +115,28 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!this.prevButton || !this.nextButton) return;
             this.prevButton.addEventListener('click', () => this.slide('prev'));
             this.nextButton.addEventListener('click', () => this.slide('next'));
-        }
-    }
+        
+
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const newCardsPerView = this.getCardsPerView();
+            if (newCardsPerView !== this.cardsPerView) {
+                this.cardsPerView = newCardsPerView;
+                this.itemWidth = this.sliderCurrent.offsetWidth;
+                this.generateCardArrays();
+                this.renderAllSliders();
+                this.slider.style.transition = 'none';
+                this.slider.style.transform = `translateX(-${this.itemWidth}px)`;
+            }
+        }, 200);
+    });
+
+}
+
+
+}
 
     window.petSlider = new PetSlider();
 });
