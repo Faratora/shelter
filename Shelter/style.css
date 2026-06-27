@@ -292,14 +292,12 @@ body {
     flex: 1 1 270px;
     max-width: 270px;
     min-width: 240px;
-    background-color: transparent;
+    background-color: var(--color-white);
     border-radius: 24px;
     transition: background-color 0.3s ease;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    background-color: var(--color-light);
-    border-radius: 24px;
     overflow: hidden;
 }
 
@@ -318,7 +316,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 30px 15px 30px;
-    background-color: var(--color-light);
+    background-color: var(--color-white);
     transition: background-color 0.3s ease;
     flex-grow: 1;
     text-align: center;
@@ -612,53 +610,3 @@ body {
 }
 
 
-/* Стили для слайдера с анимацией */
-
-.slider-item.move-left {
-    animation: slideLeft 1s ease-in-out;
-}
-
-.slider-item.move-right {
-    animation: slideRight 1s ease-in-out;
-}
-
-@keyframes slideLeft {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-}
-
-@keyframes slideRight {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-}
-
-/* Стили для контейнеров предпросмотра */
-.slider-prev,
-.slider-next {
-    display: none;
-}
-
-/* Адаптивность */
-@media (max-width: 1279px) {
-    .slider-item {
-        gap: 20px;
-    }
-}
-
-@media (max-width: 767px) {
-    .slider-item {
-        gap: 15px;
-    }
-}

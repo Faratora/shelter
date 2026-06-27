@@ -1,15 +1,12 @@
 /* ========== Popup ========== */
-/* Блокируем скролл на html, а не на body */
 html.menu-open,
 html.popup-open {
   overflow: hidden !important;
-  /* position: fixed здесь НЕ нужен — он и вызывает прыжок */
+ 
 }
 
-/* body оставляем как есть, без position:fixed */
 body.menu-open,
 body.popup-open {
-  /* Убираем position:fixed и margin-right отсюда */
   overflow: hidden !important;
 }
 
@@ -194,3 +191,60 @@ li::marker {
     }
 }
 
+@media (max-width: 767px) {
+    .pets-popup__body {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .pets-popup__img {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .pets-popup__body {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .pets-popup__img {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    .pets-popup__info {
+        width: 90%;
+        max-width: 500px;
+        height: auto;
+        margin-top: 0;
+    }
+
+    .pets-popup__close {
+        top: -46px;
+        right: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .pets-popup__body {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .pets-popup__img {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+}
