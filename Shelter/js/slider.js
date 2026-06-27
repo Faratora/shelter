@@ -1,6 +1,6 @@
 // slider.js
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     class PetSlider {
         constructor() {
@@ -29,10 +29,12 @@ document.addEventListener('DOMContentLoaded', function() {
             this.currentGroup = this.getRandomGroup([], this.cardsPerView);
             this.renderCards(this.currentGroup);
             this.setupEventListeners();
-            
-            setTimeout(() => {
-                this.updateCardDimensions();
-            }, 0);
+
+           document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    this.isAnimating = false;
+                }
+            });
         }
 
         loadDefaultPets() {
@@ -59,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const newCardsPerView = this.getCardsPerView();
             if (newCardsPerView !== this.cardsPerView) {
                 this.cardsPerView = newCardsPerView;
-                
+
                 if (this.currentGroup.length !== this.cardsPerView) {
                     this.currentGroup = this.getRandomGroup([], this.cardsPerView);
                     this.renderCards(this.currentGroup);
@@ -71,12 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         getRandomGroup(excludedPets, count) {
             const excludedIds = new Set(excludedPets.map(pet => pet.id));
-            let availablePets = this.allPets.filter(pet => !excludedIds.has(pet.id));
-            
-            if (availablePets.length < count) {
-                availablePets = this.allPets.filter(pet => !excludedIds.has(pet.id));
-            }
-            
+            const availablePets = this.allPets.filter(pet => !excludedIds.has(pet.id));
+
             const shuffled = this.shuffleArray([...availablePets]);
             return shuffled.slice(0, count);
         }
@@ -91,67 +89,54 @@ document.addEventListener('DOMContentLoaded', function() {
 
         renderCards(pets) {
             const fragment = document.createDocumentFragment();
-            
+
             pets.forEach((pet, index) => {
                 const card = document.createElement('article');
                 card.className = 'slider-item__content';
                 card.dataset.index = index;
 
+                const safeName = this.escapeHtml(pet.name);
+                const safeImg = this.escapeAttr(pet.img);
+
                 card.innerHTML = `
-                    <img class="slider-item__img" src="${pet.img}" alt="${pet.name}'s photo">
+                    <img class="slider-item__img" src="${safeImg}" alt="${safeName}'s photo" width="270" height="270" loading="lazy" decoding="async">
                     <div class="card-info">
-                        <h2 class="pets-card__name">${pet.name}</h2>
-                        <a href="#" class="learn-more-btn" data-pet-id="${pet.id}">
-                            <div class="btn btn--secondary">
-                                <span>Learn more</span>
-                            </div>
-                        </a>
+                        <h2 class="pets-card__name">${safeName}</h2>
+                        <button type="button" class="learn-more-btn" data-pet-id="${pet.id}" aria-label="Learn more about ${safeName}">
+                            <span class="btn btn--secondary">Learn more</span>
+                        </button>
                     </div>
                 `;
 
-                // Добавляем отдельный обработчик для кнопки Learn more
                 const learnMoreBtn = card.querySelector('.learn-more-btn');
                 learnMoreBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const petId = parseInt(e.currentTarget.dataset.petId);
+                    e.stopPropagation();
+                    const petId = parseInt(e.currentTarget.dataset.petId, 10);
                     const pet = this.currentGroup.find(p => p.id === petId);
                     if (pet) {
-                        // Здесь вызываем открытие попапа
-                        console.log('Open popup for:', pet);
-                        // Если у вас есть функция открытия попапа:
-                        // this.openPetPopup(pet);
-                        // Или если используете глобальный объект:
-                        // window.petPopup?.open(pet);
-                        window.petPopup.open(pet);
+                        window.petPopup?.open(pet);
                     }
                 });
 
                 fragment.appendChild(card);
             });
 
-            this.sliderContainer.innerHTML = '';
-            this.sliderContainer.appendChild(fragment);
+            this.sliderContainer.replaceChildren(fragment);
 
-            setTimeout(() => {
-                this.updateCardDimensions();
-            }, 0);
+            setTimeout(() => this.updateCardDimensions(), 0);
         }
 
-        // Добавьте этот метод для открытия попапа (опционально)
-        openPetPopup(pet) {
-            // Ваша логика открытия попапа
-            console.log('Opening popup for pet:', pet);
-            // Пример:
-            // const popup = document.createElement('div');
-            // popup.className = 'pet-popup';
-            // popup.innerHTML = `
-            //     <div class="popup-content">
-            //         <h2>${pet.name}</h2>
-            //         <img src="${pet.img}" alt="${pet.name}">
-            //         <button onclick="this.parentElement.parentElement.remove()">Close</button>
-            //     </div>
-            // `;
-            // document.body.appendChild(popup);
+        escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        escapeAttr(str) {
+            return this.escapeHtml(str);
         }
 
         updateCardDimensions() {
@@ -182,24 +167,18 @@ document.addEventListener('DOMContentLoaded', function() {
             this.prevButton.addEventListener('click', () => this.slide('prev'));
             this.nextButton.addEventListener('click', () => this.slide('next'));
 
-            // Удаляем старый обработчик клика на контейнере, так как теперь у нас есть отдельный обработчик на кнопке
-            // Оставляем его только для клика по карточке (не по кнопке)
+            // Клик по карточке открывает попап
             if (this.sliderContainer) {
                 this.sliderContainer.addEventListener('click', (e) => {
-                    // Проверяем, что клик был не по кнопке Learn more
-                    if (e.target.closest('.learn-more-btn')) {
-                        return; // Игнорируем, так как обработчик уже есть на кнопке
-                    }
-                    
+                    if (e.target.closest('.learn-more-btn')) return;
+
                     const card = e.target.closest('.slider-item__content');
-                    if (card) {
-                        const pet = this.currentGroup[parseInt(card.dataset.index)];
-                        if (pet) {
-                            // Здесь можно открыть попап при клике на карточку (не на кнопку)
-                            console.log('Card clicked:', pet);
-                            // window.petPopup?.open(pet);
-                            window.petPopup.open(pet);
-                        }
+                    if (!card) return;
+
+                    const index = parseInt(card.dataset.index, 10);
+                    const pet = this.currentGroup[index];
+                    if (pet) {
+                        window.petPopup?.open(pet);
                     }
                 });
             }
@@ -215,10 +194,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (this.isAnimating) return;
             this.isAnimating = true;
 
-            const currentCards = this.sliderContainer.querySelectorAll('.slider-item__content');
             const nextGroup = this.getRandomGroup(this.currentGroup, this.cardsPerView);
-
             this.currentGroup = nextGroup;
+
+            // Очищаем контейнер
+            this.sliderContainer.replaceChildren();
             this.renderCards(nextGroup);
 
             const offset = direction === 'next' ? '100%' : '-100%';
@@ -226,7 +206,6 @@ document.addEventListener('DOMContentLoaded', function() {
             this.sliderContainer.style.transform = `translateX(${offset})`;
 
             void this.sliderContainer.offsetHeight;
-            currentCards.forEach(card => card.remove());
 
             this.sliderContainer.style.transition = `transform ${this.animationDuration}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
             this.sliderContainer.style.transform = 'translateX(0)';
@@ -240,5 +219,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    const slider = new PetSlider();
+    new PetSlider();
 });
