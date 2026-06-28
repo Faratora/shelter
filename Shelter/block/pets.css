@@ -21,11 +21,11 @@
 }
 
 .pets-page .header-nav__link {
-    color: #545454;
+    color: var(--color-gray-secondary);
 }
 
 .pets-page .header-nav__link:hover {
-    color: var(--color-primary);
+    color: var(--color-gray-secondary);
 }
 
 .pets-page .header-nav__link--active {
@@ -50,7 +50,6 @@
     column-gap: 40px;
     flex-wrap: wrap;
     max-width: 100%;
-    overflow: hidden;
 }
 
 .pets__pagination-wrap {
@@ -64,68 +63,3 @@
 .pets-page .header__burger span {
     background: #000;
 }
-
-@media (max-width: 768px) {
-    
-    .pets-page .our-friends__slider {
-        margin-top: 30px;
-        margin-bottom: 36px;
-    }
-
-    .pets__pagination-wrap {
-        padding-bottom: 70px;
-    }
-
-    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(7),
-    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(8) {
-        display: none;
-    }
-
-  
-.pets-page .footer__grid {
-        margin-top:0;
-        padding-top: 35px;
-    }
-}
-
-@media (max-width: 320px) {
-   
-    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(4),
-    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(5),
-    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(6)    {
-        display: none;
-    }
-    
-   
-    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(1),
-    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(2),
-    .pets-page .our-friends__slider .slider-item .slider-item__content:nth-child(3) {
-        display: block;
-    }
-
-    .pets__pagination-wrap {
-        padding-bottom: 70px;
-    }
-
-    .pets__pagination-wrap {
-    
-    gap: 10px;
-    padding-bottom: 30px;
-    }
-
-    .pets-page .footer__grid {
-        margin-top: 10px;
-        padding-top: 35px;
-    }
-
-    .pets-page .inner {
-        padding: 45px 0 0;
-    }
-
-    .pets-page .our-friends__slider {
-        margin-top: 55px;
-        margin-bottom: 36px;
-    }
-
-}
-

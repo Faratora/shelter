@@ -5,12 +5,12 @@
     --color-primary: #f1cdb3;
     --color-primary-light: #fddcc4;
     --color-light: #fafafa;
-    --color-dark: #292929;
-    --color-gray: #4c4c4c;
     --color-gray-light: #cdcdcd;
     --color-gray-lighter: #f6f6f6;
-    --color-white: #ffffff;
+    --color-dark: #292929;
+    --color-gray: #4c4c4c;
     --color-gray-secondary: #545454;
+    --color-white: #ffffff;
     --color-gray-muted: #b2b2b2;
 }
 
@@ -71,13 +71,13 @@ svg {
 }
 
 html {
-    height: 100%;
+    /* height: 100%; */
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
 
 body {
-    height: 100%;
+    /* height: 100%; */
     font-family: var(--second-family);
     line-height: 1;
     font-size: 15px;
@@ -284,20 +284,20 @@ body {
     flex: 1;
     flex-wrap: wrap;
     max-width: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
 }
 
 .slider-item__content {
     flex: 1 1 270px;
     max-width: 270px;
     min-width: 240px;
-    background-color: transparent;
+    background-color: var(--color-light);
     border-radius: 24px;
     transition: background-color 0.3s ease;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    background-color: var(--color-light);
-    border-radius: 24px;
     overflow: hidden;
 }
 
@@ -425,6 +425,7 @@ body {
     color: var(--color-gray-secondary);
     margin-bottom: 20px;
 }
+
 .in-addition__card-number {
     position: relative;
     max-width: 349px;
@@ -439,6 +440,7 @@ body {
     background: var(--color-primary);
     color: var(--color-gray-secondary);
 }
+
 .in-addition__card-number:hover {
     cursor: pointer;
     background-color: var(--color-primary-light);
@@ -453,6 +455,7 @@ body {
     left: 15px;
     top: 10px;
 }
+
 .in-addition__info {
     max-width: 380px;
     font-style: italic;
@@ -504,7 +507,6 @@ body {
     margin: 56px 0 40px 0;
     max-width: 279px;
 }
-
 
 .footer__contact-item,
 .footer__address-item {
