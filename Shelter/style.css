@@ -10,9 +10,7 @@
     --color-dark: #292929;
     --color-gray: #4c4c4c;
     --color-gray-secondary: #545454;
-    
     --color-white: #ffffff;
-    
     --color-gray-muted: #b2b2b2;
 }
 
@@ -427,6 +425,7 @@ body {
     color: var(--color-gray-secondary);
     margin-bottom: 20px;
 }
+
 .in-addition__card-number {
     position: relative;
     max-width: 349px;
@@ -441,6 +440,7 @@ body {
     background: var(--color-primary);
     color: var(--color-gray-secondary);
 }
+
 .in-addition__card-number:hover {
     cursor: pointer;
     background-color: var(--color-primary-light);
@@ -455,6 +455,7 @@ body {
     left: 15px;
     top: 10px;
 }
+
 .in-addition__info {
     max-width: 380px;
     font-style: italic;
@@ -506,7 +507,6 @@ body {
     margin: 56px 0 40px 0;
     max-width: 279px;
 }
-
 
 .footer__contact-item,
 .footer__address-item {
@@ -610,5 +610,3 @@ body {
     max-height: 300px;
     margin-top: 40px;
 }
-
-

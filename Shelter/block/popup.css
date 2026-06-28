@@ -2,14 +2,12 @@
 html.menu-open,
 html.popup-open {
     overflow: hidden !important;
-
 }
 
 body.menu-open,
 body.popup-open {
     overflow: hidden !important;
 }
-
 
 .pets-popup {
     position: fixed;
@@ -40,6 +38,7 @@ body.popup-open {
     width: 90%;
     max-height: 90vh;
     animation: popupIn 0.3s ease forwards;
+    margin-top: 8vh;
 }
 
 @keyframes popupIn {
@@ -76,7 +75,6 @@ body.popup-open {
 
 .pets-popup__close:hover {
     background: var(--color-primary);
-
 }
 
 .pets-popup__body {
@@ -153,16 +151,12 @@ body.popup-open {
 .pets-popup__item {
     font-size: 14px;
     list-style: disc;
-
 }
 
 li::marker {
     color: var(--color-primary);
     font-size: 12px;
-
-
 }
-
 
 .pets-popup__title {
     list-style-type: initial;
@@ -171,7 +165,6 @@ li::marker {
     font-size: 15px;
     line-height: 110%;
     letter-spacing: 0.06em;
-
 }
 
 .pets-popup__value {
@@ -179,7 +172,6 @@ li::marker {
     font-weight: 400;
     font-size: 16px;
 }
-
 
 @media (max-width: 768px) {
     .pets-popup__inner {
@@ -217,8 +209,6 @@ li::marker {
         padding-right: 5px;
         font-size: 13px;
         max-width: 350px;
-
-
     }
 
     .pets-popup__health {
@@ -231,16 +221,11 @@ li::marker {
     }
 }
 
-
-
-
-
-
 @media (max-width: 628px) {
     .pets-popup__inner {
         max-width: 240px;
         max-height: 341px;
-
+        margin-top: 6vh;
     }
 
     .pets-popup__body {
@@ -249,12 +234,9 @@ li::marker {
         text-align: center;
     }
 
-.pets-popup__img {
-    display: none;
-}
-
-
-    
+    .pets-popup__img {
+        display: none;
+    }
 
     .pets-popup__close {
         top: -52px;
@@ -267,7 +249,6 @@ li::marker {
         padding-right: 0;
         letter-spacing: 0.04em;
         padding-bottom: 24px;
-
     }
 
     .pets-popup__health {
