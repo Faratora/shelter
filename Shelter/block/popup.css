@@ -1,0 +1,259 @@
+/* ========== Popup ========== */
+html.menu-open,
+html.popup-open {
+    overflow: hidden !important;
+}
+
+body.menu-open,
+body.popup-open {
+    overflow: hidden !important;
+}
+
+.pets-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.pets-popup.active {
+    display: flex !important;
+}
+
+.pets-popup__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.pets-popup__inner {
+    position: relative;
+    z-index: 2;
+    background: var(--color-light);
+    border-radius: 9px;
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
+    animation: popupIn 0.3s ease forwards;
+    margin-top: 8vh;
+}
+
+@keyframes popupIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.pets-popup__close {
+    position: absolute;
+    top: -54px;
+    right: -41px;
+    width: 52px;
+    height: 52px;
+    background: none;
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    color: var(--color-dark);
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.pets-popup__close:hover {
+    background: var(--color-primary);
+}
+
+.pets-popup__body {
+    display: flex;
+    gap: 30px;
+    overflow-y: auto;
+    max-height: 90vh;
+    box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04);
+    background;
+}
+
+.pets-popup__img {
+    max-width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 16px;
+    flex-shrink: 0;
+}
+
+.pets-popup__info {
+    width: 351px;
+    height: 362px;
+    margin-top: 50px;
+
+    color: #000000;
+    font-family: Georgia;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.pets-popup__name {
+    font-family: var(--font-family);
+    font-size: 35px;
+    font-weight: 400;
+    color: #000;
+    margin: 0;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+}
+
+.pets-popup__details {
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 115%;
+    letter-spacing: 0.06em;
+    color: #000;
+}
+
+.pets-popup__description {
+    color: var(--color-gray);
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+    color: #000;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+.pets-popup__health {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 15px;
+    list-style: none;
+    margin: 0;
+}
+
+.pets-popup__item {
+    font-size: 14px;
+    list-style: disc;
+}
+
+li::marker {
+    color: var(--color-primary);
+    font-size: 12px;
+}
+
+.pets-popup__title {
+    list-style-type: initial;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+}
+
+.pets-popup__value {
+    color: var(--color-dark);
+    font-weight: 400;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .pets-popup__inner {
+        max-width: 630px;
+    }
+
+    .pets-popup__body {
+        gap: 13px;
+    }
+
+    .pets-popup__img {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+    }
+
+    .pets-popup__info {
+        width: 90%;
+        max-width: 350px;
+        height: auto;
+        margin-top: 0;
+    }
+
+    .pets-popup__name {
+        padding-top: 10px;
+    }
+
+    .pets-popup__details {
+        font-size: 20px;
+    }
+
+    .pets-popup__description {
+        padding-bottom: 20px;
+        padding-top: 20px;
+        padding-right: 5px;
+        font-size: 13px;
+        max-width: 350px;
+    }
+
+    .pets-popup__health {
+        gap: 5px;
+    }
+
+    .pets-popup__close {
+        top: -52px;
+        right: -43px;
+    }
+}
+
+@media (max-width: 628px) {
+    .pets-popup__inner {
+        max-width: 240px;
+        max-height: 341px;
+        margin-top: 6vh;
+    }
+
+    .pets-popup__body {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .pets-popup__img {
+        display: none;
+    }
+
+    .pets-popup__close {
+        top: -52px;
+        right: -29px;
+    }
+
+    .pets-popup__description {
+        text-align: justify;
+        font-size: 13px;
+        padding-right: 0;
+        letter-spacing: 0.04em;
+        padding-bottom: 24px;
+    }
+
+    .pets-popup__health {
+        text-align: left;
+        padding-bottom: 10px;
+    }
+
+}
