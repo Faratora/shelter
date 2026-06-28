@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const petMap = {};
         pets.forEach((p) => (petMap[p.name] = p));
 
-        // Создаём массив с 6 копиями каждого питомца
         const grouped = [];
         pets.forEach((pet) => {
             for (let i = 0; i < countPerPet; i++) {
@@ -34,11 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Сортируем для стабильности порядка
         grouped.sort((a, b) => a.name.localeCompare(b.name));
 
-        // Распределяем с шагом 5 (взаимно простым с 48)
-        // Гарантирует, что одинаковые питомцы будут через 5 позиций
         const result = new Array(total);
         for (let i = 0; i < total; i++) {
             result[(i * 5) % total] = grouped[i];
@@ -63,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img class="slider-item__img" src="${pet.img}" alt="${pet.name}'s photo">
                 <div class="card-info">
                     <p class="pets-card__name">${pet.name}</p>
-                    <a href="#" style="text-decoration: none">
+                    <a href="#">
                         <div class="btn btn--secondary">
                             <span>Learn more</span>
                         </div>
